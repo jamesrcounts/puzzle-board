@@ -1,33 +1,25 @@
 package demo;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class SimplePuzzle implements Runnable {
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new SimplePuzzle());
 	}
-	
+
 	public void run() {
 		this.setLookAndFeel();
-		
+
 		PuzzleBoard board = new PuzzleBoard();
-		
+
 		PuzzleWindow pw = new PuzzleWindow();
 		pw.add(board);
 		pw.setVisible(true);
-		
 
-//		
-////		Balls balls = new Balls();
-////		frame.add(balls);
-//		frame.setVisible(true);
-//
-////		new Thread(new BounceEngine(balls)).start();
+		new Thread(new PuzzleSolver(board)).start();
 
 	}
 
@@ -42,5 +34,3 @@ public class SimplePuzzle implements Runnable {
 	}
 
 }
-
-
